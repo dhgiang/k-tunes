@@ -12,8 +12,9 @@
         <nuxt-link to="/songs">Songs</nuxt-link>
       </li>
       <li v-if="$store.state.auth">
-        <!-- <nuxt-link to="/logout" @click="logout">Logout</nuxt-link> -->
-        <button class="logout" @click="logout">Logout</button>
+        <nuxt-link to="/logout">
+          <button class="logout" @click="logout">Logout</button>
+        </nuxt-link>
       </li>
     </ul>
   </header>
@@ -39,8 +40,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: .5rem;
-  padding-bottom: .5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px dotted #ccc;
 }
 
@@ -64,8 +65,8 @@ export default {
 .logout {
   background: #41b883;
   border: 1px;
-  width: 67.7px;
-  height: 24.85px;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   color: #fff;
   margin-right: 0.5rem;
