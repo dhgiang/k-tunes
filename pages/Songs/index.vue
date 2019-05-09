@@ -44,8 +44,6 @@ export default {
   async created() {
     try {
       let downloadedSongs = []
-      this.$nuxt.$loading.start()
-      setTimeout(() => {}, 1000)
       const { data } = await axios.get(
         'https://kepler.space/frontend2019/skillful_wire/listSongs',
         config

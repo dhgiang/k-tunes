@@ -6,7 +6,13 @@
 </template>
 
 <script>
-export default {}
+const Cookie = process.client ? require('js-cookie') : undefined
+export default {
+  mounted() {
+    Cookie.remove('auth')
+    this.$store.commit('setAuth', null)
+  }
+}
 </script>
 
 <style>
