@@ -36,6 +36,7 @@ input {
   border: 1px dotted #ccc;
   line-height: 1.6rem;
   margin: 5px;
+  width: 250px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
