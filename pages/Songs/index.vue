@@ -4,45 +4,63 @@
     <div>
       <SearchSongs v-on:search-text="searchText" v-on:reset="reset"/>
     </div>
-    <FilterSongs/>
     <Song
       v-for="song in songs"
       :key="song.id"
       :id="song.id"
       :title="song.title"
       :artist="song.artist"
+      :downloaded="song.downloaded"
     />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Cookie from 'js-cookie'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import Song from '../../components/Song'
 import SearchSongs from '../../components/SearchSongs'
-import FilterSongs from '../../components/FilterSongs'
 import { config, fetchData, remapSongs } from '../../utils/util.js'
 
 export default {
   components: {
     Song,
     SearchSongs,
-    FilterSongs
+    FontAwesomeIcon
   },
   middleware: 'authenticated',
-  data() {
-    return {
-      songs: []
-    }
+  asyncData({ req }) {
+    console.log('req: ', req)
+    return new Promise(resolve => {
+      setTimeout(function() {
+        resolve({
+          songs: []
+        })
+      }, 500)
+    })
   },
   async created() {
     try {
+      this.$nuxt.$loading.start()
+      setTimeout(() => {}, 1000)
       const { data } = await axios.get(
         'https://kepler.space/frontend2019/skillful_wire/listSongs',
         config
       )
+      const downloaded = await axios.get(
+        `https://kepler.space/frontend2019/skillful_wire/listSongs?email=dgiang@delvinia.com&password=test1234`,
+        config
+      )
+      const values = fetchData(downloaded.data);
       const { song } = fetchData(data).response.songs
-      const songList = remapSongs(song)
-      this.songs = songList.sort()
+      const downloadedSongs = values.response.songs.song.map(s => s._text);
+
+      this.songs = remapSongs(song, downloadedSongs).sort()
+      this.$store.commit('setSongs', this.songs)
+
     } catch (err) {
       console.log('error: ', err)
     }
@@ -60,17 +78,7 @@ export default {
       )
     },
     async reset() {
-      try {
-        const { data } = await axios.get(
-          'https://kepler.space/frontend2019/skillful_wire/listSongs',
-          config
-        )
-        const { song } = fetchData(data).response.songs
-        const songList = remapSongs(song)
-        this.songs = songList.sort()
-      } catch (err) {
-        console.log('error: ', err)
-      }
+        this.songs = this.$store.state.songs;      
     }
   },
   head() {

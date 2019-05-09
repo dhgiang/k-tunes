@@ -70,10 +70,8 @@ export default {
   outline: none;
   color: #fff;
   display: inline-block;
-  /* padding: 0.3rem 1rem; */
   margin-right: 0.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
-  /* line-height: 1.6rem; */
 }
 </style>
