@@ -24,7 +24,6 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
-  line-height: 1.6;
   background: #f4f4f4;
 }
 a {
@@ -37,7 +36,6 @@ ul {
 .container {
   max-width: 800px;
   margin: 1rem auto;
-  overflow: hidden;
   padding: 1rem;
   background: #fff;
   vertical-align: middle;
