@@ -19,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/vuetify": "^0.5.5",
     "cookieparser": "^0.1.0",
     "cross-env": "^5.2.0",
     "js-cookie": "^2.2.0",

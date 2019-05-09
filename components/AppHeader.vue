@@ -12,9 +12,7 @@
         <nuxt-link to="/songs">Songs</nuxt-link>
       </li>
       <li v-if="$store.state.auth">
-        <nuxt-link to="/logout">
-          <button class="logout" @click="logout">logout</button>
-        </nuxt-link>
+        <button class="logout" @click="logout">Logout</button>
       </li>
     </ul>
   </header>
@@ -29,6 +27,7 @@ export default {
     logout() {
       Cookie.remove('auth')
       this.$store.commit('setAuth', null)
+      this.$router.push('/logout')
     }
   }
 }
@@ -62,14 +61,12 @@ export default {
 }
 
 .logout {
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
+  background: #41b883;
+  border: 1px;
+  width: 77px;
+  height: 34.59px;
   cursor: pointer;
-  overflow: hidden;
-  outline: none;
   color: #fff;
-  display: inline-block;
   margin-right: 0.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;

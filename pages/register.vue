@@ -50,6 +50,10 @@ export default {
   },
   methods: {
     async onSubmit() {
+      // clear all errors first
+      this.errors = []
+      this.$store.commit('setError', this.errors)
+
       // validate password
       if (this.password !== this.password2) {
         this.errors.push({ id: '1', message: 'passwords do not match' })
@@ -67,6 +71,7 @@ export default {
           }&email=${this.email}&password=${this.password}`
           const { data } = await axios.post(url)
           const { _attributes, _text } = fetchData(data).response
+          const redirectToLogin = () => this.$router.push('/login')
 
           if (_attributes.success === 'false') {
             this.errors.push({ id: 3, message: _text })
@@ -75,12 +80,14 @@ export default {
             x.className = 'show'
             setTimeout(function() {
               x.className = x.className.replace('show', '')
-            }, 3000)
+              redirectToLogin()
+            }, 1500)
             this.errors = []
             this.name = ''
             this.email = ''
             this.password = ''
             this.password2 = ''
+            this.$store.commit('setError', this.errors)
           }
         } catch (err) {
           console.log('error: ', err)

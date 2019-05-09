@@ -53,16 +53,16 @@ export default {
     async onSubmit() {
       try {
         const songId = '5d85f3d4fb32888d19d9f423fd261cf9'
-        const url = `https://kepler.space/frontend2019/skillful_wire/getSong?email=${
+        const url = `https://kepler.space/frontend2019/skillful_wire/listSongs?email=${
           this.email
-        }&password=${this.password}&songid=${songId}`
+        }&password=${this.password}`
         const { data } = await axios.get(url, config)
         const { _attributes } = fetchData(data).response
 
         if (_attributes.success === 'true') {
           const auth = {
             email: this.email,
-            password: this.password,
+            password: this.password
           }
 
           this.$store.commit('setAuth', auth)

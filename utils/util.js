@@ -16,5 +16,5 @@ export const remapSongs = (songs, downloaded) =>
     id: s._text,
     artist: s._attributes.artist,
     title: s._attributes.name,
-    downloaded: downloaded.includes(s._text)
+    downloaded: downloaded.length > 0 && downloaded.includes(s._text)
   }))

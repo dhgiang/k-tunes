@@ -33,7 +33,6 @@ export default {
   },
   middleware: 'authenticated',
   asyncData({ req }) {
-    console.log('req: ', req)
     return new Promise(resolve => {
       setTimeout(function() {
         resolve({
@@ -44,6 +43,7 @@ export default {
   },
   async created() {
     try {
+      let downloadedSongs = []
       this.$nuxt.$loading.start()
       setTimeout(() => {}, 1000)
       const { data } = await axios.get(
@@ -53,18 +53,25 @@ export default {
 
       const email = this.$store.state.auth.email
       const password = this.$store.state.auth.password
-
       const downloaded = await axios.get(
         `https://kepler.space/frontend2019/skillful_wire/listSongs?email=${email}&password=${password}`,
         config
       )
-      const values = fetchData(downloaded.data);
+
+      const values = fetchData(downloaded.data)
       const { song } = fetchData(data).response.songs
-      const downloadedSongs = values.response.songs.song.map(s => s._text);
+      const count = values.response.songs.song
+
+      if (count) {
+        downloadedSongs = count.length
+          ? count.map(s => s._text)
+          : [count._text]
+      } else {
+        downloadedSongs = ['1']
+      }
 
       this.songs = remapSongs(song, downloadedSongs).sort()
       this.$store.commit('setSongs', this.songs)
-
     } catch (err) {
       console.log('error: ', err)
     }
@@ -82,7 +89,7 @@ export default {
       )
     },
     async reset() {
-        this.songs = this.$store.state.songs;      
+      this.songs = this.$store.state.songs
     }
   },
   head() {

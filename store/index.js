@@ -9,6 +9,7 @@ const createStore = () => {
       auth: null,
       error: null,
       songs: null,
+      downloaded: null
     },
     mutations: {
       setAuth(state, auth) {
@@ -19,6 +20,9 @@ const createStore = () => {
       },
       setError(state, err) {
         state.error = err
+      },
+      setDownloaded(state, downloaded) {
+        state.downloaded = downloaded
       }
     },
     actions: {
@@ -26,10 +30,10 @@ const createStore = () => {
         let auth = null
         if (req.headers.cookie) {
           const parsed = cookieparser.parse(req.headers.cookie)
-          try { 
+          try {
             auth = JSON.parse(parsed.auth)
             if (process.client) {
-              localStorage.setItem('cookie', auth);
+              localStorage.setItem('cookie', auth)
             }
             Cookie.set('cookie', auth)
           } catch (err) {
