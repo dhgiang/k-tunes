@@ -50,8 +50,12 @@ export default {
         'https://kepler.space/frontend2019/skillful_wire/listSongs',
         config
       )
+
+      const email = this.$store.state.auth.email
+      const password = this.$store.state.auth.password
+
       const downloaded = await axios.get(
-        `https://kepler.space/frontend2019/skillful_wire/listSongs?email=dgiang@delvinia.com&password=test1234`,
+        `https://kepler.space/frontend2019/skillful_wire/listSongs?email=${email}&password=${password}`,
         config
       )
       const values = fetchData(downloaded.data);

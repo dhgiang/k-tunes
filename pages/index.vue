@@ -33,12 +33,11 @@ export default {
       }
 
       setTimeout(() => {
-        // we simulate the async request with timeout.
         const auth = {
           accessToken: 'someStringGotFromApiServiceWithAjax'
         }
-        this.$store.commit('setAuth', auth) // mutating to store for client rendering
-        Cookie.set('auth', auth) // saving token in cookie for server rendering
+        this.$store.commit('setAuth', auth)
+        Cookie.set('auth', auth)
         this.$router.push('/songs')
       }, 1000)
     }

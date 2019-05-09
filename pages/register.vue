@@ -67,7 +67,7 @@ export default {
           }&email=${this.email}&password=${this.password}`
           const { data } = await axios.post(url)
           const { _attributes, _text } = fetchData(data).response
-          console.log('result: ', data)
+
           if (_attributes.success === 'false') {
             this.errors.push({ id: 3, message: _text })
           } else if (_attributes.success === 'true') {
@@ -94,7 +94,6 @@ export default {
       this.password = ''
       this.password2 = ''
       this.$store.commit('setError', this.errors)
-      console.log('array: ', this.errors.length)
     }
   }
 }

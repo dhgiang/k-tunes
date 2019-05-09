@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="song">
-      <!-- <p>{{ id }}</p> -->
       <p>
         <strong>{{ title }}</strong>
       </p>
