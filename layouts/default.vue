@@ -36,7 +36,7 @@ ul {
 .container {
   max-width: 800px;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 0 1rem 0 1rem;
   background: #fff;
   vertical-align: middle;
 }

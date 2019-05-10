@@ -56,7 +56,7 @@ export default {
 <style scoped>
 .container {
   width: 100%;
-  height: 120px;
+  height: 90px;
 }
 
 .song {
@@ -72,6 +72,7 @@ export default {
 .download {
   height: 50px;
   width: 100%;
+  vertical-align: middle;
 }
 
 button:hover::before {
@@ -87,9 +88,12 @@ button:hover {
   position: relative;
   align-items: flex-end;
   justify-content: flex-end;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   float: right;
   line-height: 50px;
+}
+p {
+  line-height: 1.6rem;
 }
 </style>
