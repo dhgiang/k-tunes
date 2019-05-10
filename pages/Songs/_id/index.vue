@@ -1,8 +1,9 @@
 <template>
   <div>
-    <button>
-      <nuxt-link to="/songs">Back to Main</nuxt-link>
-    </button>
+    <nuxt-link to="/songs">
+      <button>Back to Main</button>
+    </nuxt-link>
+    <hr>
     <ul>
       <li>ID: {{ song.id }}</li>
       <li>Title: {{ song.title }}</li>
@@ -48,7 +49,7 @@ export default {
 
       if (_attributes.success && rawdata !== undefined) {
         const songs = this.$store.state.songs
-        const item = songs.filter(song => song.id === id)[0];
+        const item = songs.filter(song => song.id === id)[0]
 
         this.song = {
           id: this.$route.params.id,
